@@ -142,6 +142,6 @@ elif download_choice == "video":
 			print("Downloaded Successfully")
 
 	else: 
-		print("Incorrect input, skipping")
+		print("Incorrect input, cancelling")
 
 print('Task Completed!')
