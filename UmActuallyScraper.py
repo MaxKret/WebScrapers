@@ -34,7 +34,7 @@ episode_titles = [x for x in all_headers if x not in other_headers]
 #                                                                         list of q's from episode
 master_list = [[[merge_str_list(question_row.contents) for question_row in drop_nl_arr(questions_table.contents)] for questions_table in drop_nl_arr(episode_table.contents[1].contents)] for episode_table in top_div.find_all("table")]
 
-# Add titles and format to dict
+# format to dict
 master_dict = {}
 for episode in master_list:
 
@@ -44,13 +44,9 @@ for episode in master_list:
 		episode.remove(['Statement', 'Answer', 'Corrected?'])
 
 	for idx, question in enumerate(episode):
-
-		if len(question) != 3:
-			print("weird q")
-			exit
-
 		episode[idx] = {'Statement': question[0], 'Answer': question[1], 'Corrected': question[2]}
 
+# add titles
 for idx in range(len(episode_titles)):
 	master_dict[episode_titles[idx]] = master_list[idx]
 
