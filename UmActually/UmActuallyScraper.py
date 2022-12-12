@@ -2,6 +2,22 @@ from bs4 import BeautifulSoup as bs
 import requests, json
 import pandas as pd
 
+from pocketbase import PocketBase # Client also works the same
+
+client = PocketBase('http://127.0.0.1:8090')
+
+...
+
+# list and filter "example" collection records
+result = client.records.get_list(
+    "example", 1, 20, {"filter": 'status = true && created > "2022-08-01 10:00:00"'}
+)
+
+print(result)
+print()
+
+
+
 other_headers = ['Statements','Season Zero','Season One','Season Two','Um, Actually YouTube Channel Episodes']
 list_url = "https://um-actually.fandom.com/wiki/Um_Actually_Statements_(Questions)"
 soupreq = bs(requests.get(list_url).content, "html.parser")
